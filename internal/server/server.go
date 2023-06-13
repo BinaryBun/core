@@ -29,13 +29,13 @@ func (s *Server) Run() {
 
 	err := s.checkUrl()
 	if err != nil {
-		log.Error(err)
+		log.Fatal(err)
 		return
 	}
 
 	err = s.MapHandlers()
 	if err != nil {
-		log.Error(err)
+		log.Fatal(err)
 		return
 	}
 }
