@@ -1,22 +1,19 @@
 package http
 
 import (
-	"Core/config"
+	"Core/internal/product"
 	"github.com/go-resty/resty/v2"
 )
 
 type Service struct {
-	cfg   *config.Config
-	resty *resty.Client
+	restyCl *resty.Client
 }
 
 func NewHttpService(
-	cfg *config.Config,
-	resty *resty.Client,
-) *Service {
+	restyCl *resty.Client,
+) product.Repository {
 	return &Service{
-		cfg:   cfg,
-		resty: resty,
+		restyCl: restyCl,
 	}
 }
 
@@ -32,9 +29,9 @@ func (s *Service) GetRequestBody(url string) (body []byte, err error) {
 func (s *Service) makeRequest(url string, method string) (resp *resty.Response, err error) {
 	switch method {
 	case "GET":
-		resp, err = s.resty.R().Get(url)
+		resp, err = s.restyCl.R().Get(url)
 	case "POST":
-		resp, err = s.resty.R().Post(url)
+		resp, err = s.restyCl.R().Post(url)
 	}
 
 	return

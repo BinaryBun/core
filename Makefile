@@ -50,15 +50,15 @@ endif
 .PHONY: test
 test:
 	@$(call INFO, "Запуск тестов...")
-	$(GO) test ./...
+	@$(GO) test ./...
 
 .PHONY: clean
 clean:
 	@$(call INFO, "Очистка...")
-	rm -f myapp
+	@rm -f myapp
 
 .PHONY: run
 run:
 	@$(call INFO, "Запуск приложения...")
-	$(GO) run $(PACKAGE)
+	@$(GO) run $(PACKAGE)
 
