@@ -3,29 +3,27 @@ package usecase
 import (
 	"Core/config"
 	"Core/internal/product"
-	"Core/internal/product/delivery/http"
-	log "github.com/sirupsen/logrus"
 )
 
 type productUC struct {
-	cfg         *config.Config
-	HTTPService *http.Service
+	cfg *config.Config
 }
 
 func NewProductUC(
 	cfg *config.Config,
-	httpServ *http.Service,
 ) product.UseCase {
 	return &productUC{
-		cfg:         cfg,
-		HTTPService: httpServ,
+		cfg: cfg,
 	}
 }
 
-func (p *productUC) RenderBodyToAscii(body []byte) (render string) {
+func (p *productUC) RenderBodyToAscii(body []byte) (render string, err error) {
+	// TODO: Артём делай тут
+	render, err = "Final point!!", nil // example
 	return
 }
 
-func (p *productUC) Print() {
-	log.Info("Oll good")
-}
+// TODO: Максим сделает потом, пока что не смотри
+/*func (p *productUC) renderImage() {
+
+}*/

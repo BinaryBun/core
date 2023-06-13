@@ -1,7 +1,8 @@
 package server
 
 import (
-	"Core/internal/product/delivery/http"
+	"Core/internal/product/delivery/console"
+	"Core/internal/product/repository/http"
 	"Core/internal/product/usecase"
 	"fmt"
 	log "github.com/sirupsen/logrus"
@@ -10,10 +11,12 @@ import (
 )
 
 func (s *Server) MapHandlers() (err error) {
-	HTTPService := http.NewHttpService(s.cfg, s.restyCl)
-	uc := usecase.NewProductUC(s.cfg, HTTPService)
+	uc := usecase.NewProductUC(s.cfg)
+	httpRepo := http.NewHttpService(s.restyCl)
 
-	uc.Print()
+	consoleService := console.NewUI(s.cfg, uc, httpRepo, s.startUrl)
+	consoleService.CreateWorker()
+
 	return
 }
 
