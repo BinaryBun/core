@@ -32,4 +32,10 @@ func (s *Server) Run() {
 		log.Error(err)
 		return
 	}
+
+	err = s.MapHandlers()
+	if err != nil {
+		log.Error(err)
+		return
+	}
 }

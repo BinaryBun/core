@@ -2,6 +2,7 @@ package server
 
 import (
 	"Core/internal/product/delivery/http"
+	"Core/internal/product/usecase"
 	"fmt"
 	log "github.com/sirupsen/logrus"
 	"regexp"
@@ -10,10 +11,9 @@ import (
 
 func (s *Server) MapHandlers() (err error) {
 	HTTPService := http.NewHttpService(s.cfg, s.restyCl)
-	_, err = HTTPService.GetRequestBody(s.startUrl)
-	if err != nil {
-		return
-	}
+	uc := usecase.NewProductUC(s.cfg, HTTPService)
+
+	uc.Print()
 	return
 }
 
