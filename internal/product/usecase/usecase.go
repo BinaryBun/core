@@ -3,6 +3,7 @@ package usecase
 import (
 	"Core/config"
 	"Core/internal/product"
+	"Core/pkg/renderTools"
 )
 
 type productUC struct {
@@ -23,7 +24,6 @@ func (p *productUC) RenderBodyToAscii(body []byte) (render string, err error) {
 	return
 }
 
-// TODO: Максим сделает потом, пока что не смотри
-/*func (p *productUC) renderImage() {
-
-}*/
+func (p *productUC) renderImage(url string) (render string, err error) {
+	return renderTools.ImageRenderByURL(url, 20)
+}
