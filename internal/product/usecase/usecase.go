@@ -3,6 +3,7 @@ package usecase
 import (
 	"Core/config"
 	"Core/internal/product"
+	"Core/pkg/renderTools"
 	"bytes"
 	log "github.com/sirupsen/logrus"
 	"golang.org/x/net/html"
@@ -31,6 +32,9 @@ func (p *productUC) RenderBodyToAscii(body []byte) (render string, err error) {
 	return
 }
 
+func (p *productUC) renderImage(url string) (render string, err error) {
+	return renderTools.ImageRenderByURL(url, 20)
+}
 func parseLinks(node *html.Node) string {
 	var text string
 	if node.Type == html.ElementNode {
@@ -56,7 +60,4 @@ func collectText(n *html.Node, buf *bytes.Buffer) {
 	}
 }
 
-// TODO: Максим сделает потом, пока что не смотри
-/*func (p *productUC) renderImage() {
 
-}*/
