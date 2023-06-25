@@ -7,7 +7,7 @@ func (u *UserInterface) createConsoleWorker() {
 	if err != nil {
 		log.Errorf("console.UserInterface.createConsoleWorker()->GetRequestBody: %v", err)
 	}
-	resultRender, err := u.uc.RenderBodyToAscii(body)
+	resultRender, err := u.uc.RenderBodyToAscii(string(body))
 	if err != nil {
 		log.Errorf("console.UserInterface.createConsoleWorker()->RenderBodyToAscii: %v", err)
 	}

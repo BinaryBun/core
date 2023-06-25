@@ -1,5 +1,6 @@
 package product
 
 type UseCase interface {
-	RenderBodyToAscii(body []byte) (render string, err error)
+	RenderImage(url string) (render string, err error)
+	RenderBodyToAscii(body string) (render string, links [][2]string, images []string)
 }
