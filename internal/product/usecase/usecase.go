@@ -17,13 +17,16 @@ func NewProductUC(
 		cfg: cfg,
 	}
 }
+func (p *productUC) RenderBodyToAscii(body string) (render string, links [][2]string, images []string) {
+	// TODO: Возвращать из packege renderString, ArrImagesLinks.
+	/* TODO: For _, imageLink := arrImagesLinks{
 
-func (p *productUC) RenderBodyToAscii(body []byte) (render string, err error) {
-	// TODO: Артём делай тут
-	render, err = "Final point!!", nil // example
-	return
+	_, _ :=  p.RenderImages(imageLink)
+
+	}*/
+	return renderTools.TextRenderByRegexp(body)
 }
 
-func (p *productUC) renderImage(url string) (render string, err error) {
+func (p *productUC) RenderImage(url string) (render string, err error) {
 	return renderTools.ImageRenderByURL(url, 20)
 }
